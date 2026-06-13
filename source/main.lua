@@ -44,15 +44,15 @@ local moveEveryFrames = speedOptions[selectedSpeedIndex].frames
 
 local moveSynth = snd.synth.new(snd.kWaveSquare)
 moveSynth:setADSR(0, 0, 0.15, 0)
-moveSynth:setVolume(0.16)
+moveSynth:setVolume(0.6)
 
 local eatSynth = snd.synth.new(snd.kWaveSawtooth)
 eatSynth:setADSR(0, 0.03, 0.25, 0.03)
-eatSynth:setVolume(0.20)
+eatSynth:setVolume(0.8)
 
 local collisionSynth = snd.synth.new(snd.kWaveTriangle)
 collisionSynth:setADSR(0, 0.04, 0.35, 0.06)
-collisionSynth:setVolume(0.24)
+collisionSynth:setVolume(0.9)
 
 local function isOpposite(a, b)
     return (a == DIR_UP and b == DIR_DOWN)
@@ -166,7 +166,7 @@ local function moveSnake()
     local newHead = { x = head.x + step.x, y = head.y + step.y }
 
     if newHead.x < 1 or newHead.x > COLS or newHead.y < 1 or newHead.y > ROWS then
-        collisionSynth:playNote(42, 0.1, 0.22)
+        collisionSynth:playNote(42, 0.9, 0.28)
         gameState = "gameover"
         return
     end
@@ -176,18 +176,18 @@ local function moveSnake()
 
     for i = 1, collisionLength do
         if snake[i].x == newHead.x and snake[i].y == newHead.y then
-            collisionSynth:playNote(42, 0.1, 0.22)
+            collisionSynth:playNote(42, 0.9, 0.28)
             gameState = "gameover"
             return
         end
     end
 
     table.insert(snake, 1, newHead)
-    moveSynth:playNote(72, 0.06, 0.08)
+    moveSynth:playNote(72, 0.7, 0.09)
 
     if willGrow then
         score += 1
-        eatSynth:playNote(86, 0.05, 0.14)
+        eatSynth:playNote(86, 1.0, 0.16)
         if speedOptions[selectedSpeedIndex].progressive and score % 4 == 0 then
             moveEveryFrames = math.max(2, moveEveryFrames - 1)
         end
