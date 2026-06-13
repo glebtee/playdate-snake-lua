@@ -1,6 +1,8 @@
 name=SnakeGame
 author=GlebGPT
-description=Nokia style snake game
+description=Nokia snake game
 bundleID=com.afewdevelopers.snakegame
 version=0.0.1
 buildNumber=1
+pdxversion=30005
+buildtime=834676461
